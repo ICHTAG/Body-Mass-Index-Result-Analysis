@@ -1,21 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <title>HealthMetric Pro | Advanced BMI Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="container">
-        <div class="header">Body Mass Index (BMI) Calculator</div>
-        Your Height(cm): <input type="number" value="170" class="input" id="height" placeholder="Enter your height in cm"> Your Weight(kg): <input type="number" value="80" class="input" id="weight" placeholder="Enter your weight in kg">
-        <button class="btn" id="btn">Compute BMI</button> Your BMI: <input disabled-type="text " class="input " id="BMI" placeholder="Your BMI result">
-        <h4 class="weightCondition ">Weight Condition: <span id="weightCondition"></span></h4>
+    <!-- Animated Background -->
+    <div class="background-elements">
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+        <div class="floating-element element-3"></div>
+        <div class="floating-element element-4"></div>
     </div>
-    <script src="index.js"></script>
-</body>
 
+    <!-- Main Application Container -->
+    <div class="health-app-container">
+        <!-- Calculator Panel -->
+        <div class="calculator-panel">
+            <div class="panel-header">
+                <div class="app-brand">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>HealthMetric Pro</span>
+                </div>
+                <h1 class="app-title">Body Mass Index Analysis</h1>
+                <p class="app-subtitle">Professional health assessment with personalized insights</p>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <!-- Height Input -->
+                <div class="input-group">
+                    <div class="input-label">
+                        <i class="fas fa-ruler-vertical"></i>
+                        <span>Height Measurement</span>
+                    </div>
+                    <div class="input-with-unit">
+                        <input type="number" id="height-input" class="health-input-field" placeholder="Enter height" min="50" max="250" value="170">
+                        <span class="unit-label">cm</span>
+                    </div>
+                    <div class="range-container">
+                        <input type="range" id="height-slider" class="range-control" min="50" max="250" value="170">
+                    </div>
+                </div>
+
+                <!-- Weight Input -->
+                <div class="input-group">
+                    <div class="input-label">
+                        <i class="fas fa-weight-scale"></i>
+                        <span>Weight Measurement</span>
+                    </div>
+                    <div class="input-with-unit">
+                        <input type="number" id="weight-input" class="health-input-field" placeholder="Enter weight" min="20" max="200" value="70">
+                        <span class="unit-label">kg</span>
+                    </div>
+                    <div class="range-container">
+                        <input type="range" id="weight-slider" class="range-control" min="20" max="200" value="70">
+                    </div>
+                </div>
+
+                <!-- Personal Details -->
+                <div class="personal-details-grid">
+                    <div class="detail-group">
+                        <div class="input-label">
+                            <i class="fas fa-user"></i>
+                            <span>Biological Sex</span>
+                        </div>
+                        <div class="gender-selection">
+                            <button class="gender-option selected" data-gender="male">
+                                <i class="fas fa-mars"></i>
+                                <span>Male</span>
+                            </button>
+                            <button class="gender-option" data-gender="female">
+                                <i class="fas fa-venus"></i>
+                                <span>Female</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="detail-group">
+                        <div class="input-label">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>Current Age</span>
+                        </div>
+                        <input type="number" id="age-input" class="health-input-field" placeholder="Age" min="1" max="120" value="25">
+                    </div>
+                </div>
+
+                <!-- Activity Level -->
+                <div class="input-group">
+                    <div class="input-label">
+                        <i class="fas fa-running"></i>
+                        <span>Activity Level</span>
+                    </div>
+                    <div class="activity-selection">
+                        <button class="activity-option" data-activity="sedentary">
+                            <i class="fas fa-tv"></i>
+                            <span>Sedentary</span>
+                        </button>
+                        <button class="activity-option selected" data-activity="moderate">
+                            <i class="fas fa-walking"></i>
+                            <span>Moderate</span>
+                        </button>
+                        <button class="activity-option" data-activity="active">
+                            <i class="fas fa-running"></i>
+                            <span>Active</span>
+                        </button>
+                        <button class="activity-option" data-activity="very-active">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Very Active</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <button id="calculate-bmi-btn" class="primary-action-btn">
+                <i class="fas fa-calculator"></i>
+                <span>Calculate BMI Score</span>
+            </button>
+
+            <!-- Quick Features -->
+            <div class="feature-showcase">
+                <div class="feature-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Progress Tracking</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Goal Setting</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Health Insights</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fasfa-apple-alt"></i>
+                    <span>Nutrition Tips</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="results-panel">
+            <div class="results-container">
+                <!-- BMI Visualization -->
+                <div class="bmi-visualization-section">
+                    <div class="bmi-score-display">
+                        <div class="score-circle">
+                            <svg width="220" height="220" viewBox="0 0 220 220">
+                                <circle cx="110" cy="110" r="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8"></circle>
+                                <circle id="bmi-progress-ring" cx="110" cy="110" r="100" fill="none" stroke="#4CD964" stroke-width="8" 
+                                        stroke-dasharray="628" stroke-dashoffset="628" transform="rotate(-90 110 110)"></circle>
+                            </svg>
+                            <div class="bmi-score-value" id="bmi-score-value">00.0</div>
+                            <div class="bmi-score-label">BMI SCORE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Content -->
+                <div class="results-content-section">
+                    <div class="results-header">
+                        <h2 id="health-category-title">Ready for Analysis</h2>
+                        <p id="health-category-description">Enter your details to begin health assessment</p>
+                    </div>
+
+                    <!-- Health Metrics -->
+                    <div class="health-metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="metric-info">
+                                <div class="metric-label">Health Status</div>
+                                <div class="metric-value" id="health-status-value">-</div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="metric-info">
+                                <div class="metric-label">Healthy Range</div>
+                                <div class="metric-value" id="healthy-range-value">18.5 - 24.9</div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="fas fa-weight-hanging"></i>
+                            </div>
+                            <div class="metric-info">
+                                <div class="metric-label">Ideal Weight</div>
+                                <div class="metric-value" id="ideal-weight-value">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Health Recommendations -->
+                    <div class="recommendations-card">
+                        <div class="recommendations-header">
+                            <i class="fas fa-stethoscope"></i>
+                            <h3>Health Recommendations</h3>
+                        </div>
+                        <div class="recommendations-content" id="health-recommendations">
+                            <p>Complete your profile to receive personalized health guidance.</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="results-actions">
+                        <button id="save-results-btn" class="secondary-action-btn">
+                            <i class="fas fa-save"></i>
+                            Save Results
+                        </button>
+                        <button id="set-goals-btn" class="secondary-action-btn">
+                            <i class="fas fa-bullseye"></i>
+                            Set Goals
+                        </button>
+                        <button id="share-results-btn" class="secondary-action-btn">
+                            <i class="fas fa-share-alt"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <button id="history-btn" class="floating-btn">
+            <i class="fas fa-history"></i>
+        </button>
+        <button id="analytics-btn" class="floating-btn">
+            <i class="fas fa-chart-bar"></i>
+        </button>
+        <button id="export-btn" class="floating-btn">
+            <i class="fas fa-download"></i>
+        </button>
+    </div>
+
+    <!-- History Modal -->
+    <div class="modal-overlay" id="history-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-timeline"></i> Measurement History</h2>
+                    <button class="modal-close-btn" id="close-history-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="history-list-container" class="history-list">
+                        <div class="empty-state">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>No Records Yet</h3>
+                            <p>Your BMI measurements will appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Modal -->
+    <div class="modal-overlay" id="analytics-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-chart-line"></i> Health Analytics</h2>
+                    <button class="modal-close-btn" id="close-analytics-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="analytics-content">
+                        <canvas id="health-trends-chart" width="400" height="200"></canvas>
+                        <div class="analytics-stats">
+                            <div class="analytics-stat">
+                                <div class="stat-value" id="average-bmi">--</div>
+                                <div class="stat-label">Average BMI</div>
+                            </div>
+                            <div class="analytics-stat">
+                                <div class="stat-value" id="total-change">--</div>
+                                <div class="stat-label">Total Change</div>
+                            </div>
+                            <div class="analytics-stat">
+                                <div class="stat-value" id="progress-score">--%</div>
+                                <div class="stat-label">Progress</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goals Modal -->
+    <div class="modal-overlay" id="goals-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-bullseye"></i> Set Health Goals</h2>
+                    <button class="modal-close-btn" id="close-goals-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="goals-content">
+                        <div class="goal-options">
+                            <div class="goal-option-card" data-goal="maintain">
+                                <div class="goal-icon">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <h3>Maintain Weight</h3>
+                                <p>Keep your current healthy weight</p>
+                            </div>
+                            <div class="goal-option-card" data-goal="lose">
+                                <div class="goal-icon">
+                                    <i class="fas fa-arrow-down"></i>
+                                </div>
+                                <h3>Lose Weight</h3>
+                                <p>Reach a healthier BMI range</p>
+                            </div>
+                            <div class="goal-option-card" data-goal="gain">
+                                <div class="goal-icon">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                                <h3>Gain Weight</h3>
+                                <p>Build healthy muscle mass</p>
+                            </div>
+                        </div>
+                        <div class="goal-details" id="goal-details">
+                            <div class="goal-form">
+                                <div class="form-group">
+                                    <label>Target Weight (kg)</label>
+                                    <input type="number" id="target-weight" class="health-input-field" min="20" max="200">
+                                </div>
+                                <div class="form-group">
+                                    <label>Target Date</label>
+                                    <input type="date" id="target-date" class="health-input-field">
+                                </div>
+                                <button id="save-goal-btn" class="primary-action-btn">
+                                    <i class="fas fa-check"></i>
+                                    Save Goal
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal-overlay" id="export-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-download"></i> Export Health Data</h2>
+                    <button class="modal-close-btn" id="close-export-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="export-options">
+                        <div class="export-option">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>PDF Report</span>
+                        </div>
+                        <div class="export-option">
+                            <i class="fas fa-file-csv"></i>
+                            <span>CSV Data</span>
+                        </div>
+                        <div class="export-option">
+                            <i class="fas fa-file-excel"></i>
+                            <span>Excel Spreadsheet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>
