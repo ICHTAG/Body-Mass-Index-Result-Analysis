@@ -68,5 +68,3 @@ It offers interactive charts, history tracking, and personalized feedback, makin
 
 ---
 
-## 📂 Project Structure
-
