@@ -6,7 +6,7 @@
 
 ## 🚀 Live Demo
 
-🔗 **[View Live Project on Netlify](https://body-mass-index-analysis.netlify.app/)**  
+🔗 **[View Live Project on Netlify](https://bmi-calculator-ichtag.netlify.app/)**  
 *(Replace the link with your deployed site)*
 
 ---
